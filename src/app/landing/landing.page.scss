@@ -2,4 +2,42 @@
     border: 2px solid white;
     height: fit-content;
     margin: auto;
+    width: auto;
+}
+
+.card {
+    width: 100%;
+}
+
+.info-container {
+    width: 40%;
+}
+
+ion-card {
+    overflow-y: auto;
+    // height: -webkit-fill-available;
+}
+
+ion-card-content {
+    background: #16171b;
+    border: 4px solid #01ff8c;
+    font-family: "Questrial", sans-serif;
+    -webkit-user-modify: read-write-plaintext-only;
+    line-height: 12px;
+    color: white;
+    font-size: 12px;
+}
+
+ion-textarea {
+    border: 3px solid #a3abff;
+    border-radius: 13px;
+    padding-inline-start: 10px;
+}
+
+.entrada {
+    border: 2px solid #73ffec;
+}
+
+.grafo {
+    border: 2px solid #73ffec;
 }

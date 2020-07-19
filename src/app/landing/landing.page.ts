@@ -20,6 +20,8 @@ export class LandingPage implements OnInit {
   showInput: boolean;
   showOutput: boolean;
   showAst: boolean;
+  salida: string;
+  segment: string;
   constructor() {
     this.current_index = "1";
     this.current_index_number = 1;
@@ -28,14 +30,11 @@ export class LandingPage implements OnInit {
     this.showInput = false;
     this.showOutput = true;
     this.showAst = true;
+    this.salida = '';
+    this.segment = 'entrada';
   }
 
-  ngOnInit() {
-    // @ts-ignore
-    let a = ejemplo1.parse('1+1');
-    // @ts-ignore
-    generateTree([a.node]);
-  }
+  ngOnInit() { }
 
   createExamples() {
     // Calculadora
@@ -63,18 +62,21 @@ VALOR\t\t:\t\t'('\tSUMA\t')'\t\t{ $$ = Number($2); }\n
     });
   }
 
-  changeSelect(event){
+  changeSelect(event) {
     this.current_index = event.detail.value;
     this.current_index_number = Number(this.current_index);
   }
   segmentChanged(ev: any) {
-    this.showAst = ev.detail.value !== 'ast';
-    this.showInput = ev.detail.value !== 'entrada';
-    this.showOutput = ev.detail.value !== 'salida';
+    this.segment = ev.detail.value;
   }
-  
-  analizar(form: NgForm){
-    console.log(form.value.entrada);
+
+  analizar(form: NgForm) {
+    // @ts-ignore
+    const result = ejemplo1.parse(form.value.entrada);
+    // @ts-ignore
+    generateTree([result.node]);
+    this.salida = result.val;
+    this.segment = 'salida';
   }
 
 }

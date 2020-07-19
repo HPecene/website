@@ -1,4 +1,7 @@
 function newNode(yy, state, ...nodes) {
+    if (document.getElementById("grafo")) {
+        document.getElementById("grafo").innerHTML = '';
+    }
     const parent = getNonTerminal(yy, state);
     const children = [];
     for (let node of nodes) {

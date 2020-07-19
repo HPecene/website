@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Grafo</ion-title>
+        <ion-title>Clase 2</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -39,7 +39,7 @@
             <ion-col>
                 <ion-row>
                     <ion-col>
-                        <ion-segment (ionChange)="segmentChanged($event)" value="entrada">
+                        <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" default="entrada" color="warning">
                             <ion-segment-button value="entrada">
                                 <ion-label>Entrada</ion-label>
                             </ion-segment-button>
@@ -52,7 +52,7 @@
                         </ion-segment>
                     </ion-col>
                 </ion-row>
-                <ion-row [hidden]="showInput">
+                <ion-row [hidden]="segment!='entrada'">
                     <ion-col>
                         <form #f="ngForm" (ngSubmit)="analizar(f)">
                             <ion-list class="entrada">
@@ -67,22 +67,22 @@
                         </form>
                     </ion-col>
                 </ion-row>
-                <ion-row [hidden]="showOutput">
+                <ion-row [hidden]="segment!='salida'">
                     <ion-col>
                         <ion-list class="entrada">
                             <ion-item lines="none">
                                 <ion-label>Salida</ion-label>
                             </ion-item>
                             <ion-item lines="none">
-                                <ion-textarea name="entrada" disabled="true"></ion-textarea>
+                                <ion-textarea name="entrada" disabled="true">{{salida}}</ion-textarea>
                             </ion-item>
                         </ion-list>
                     </ion-col>
                 </ion-row>
-                <ion-row [hidden]="showAst">
+                <ion-row [hidden]="segment!='ast'">
                     <ion-col>
                         <div id="graph-container" name="graph-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="860" height="500" viewBox="0 0 860 500" preserveAspectRatio="xMinYMin meet"></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet"></svg>
                         </div>
                     </ion-col>
                 </ion-row>

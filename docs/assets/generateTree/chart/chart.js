@@ -3,8 +3,8 @@ function generateTree(treeData) {
     console.log(size);
     // ************** Generate the tree diagram	 *****************
     var margin = { top: 20, right: 00, bottom: 20, left: 0 },
-        width = 55 * size - margin.right - margin.left,
-        height = 60 * size - margin.top - margin.bottom;
+        width = 700 - margin.right - margin.left,
+        height = 480 - margin.top - margin.bottom;
 
     var i = 0,
         duration = 750,
@@ -17,8 +17,12 @@ function generateTree(treeData) {
         .projection(function(d) { return [d.x, d.y]; });
 
     var svg = d3.select("svg")
-        .attr('width', '100%')
-        .attr('height', '100%')
+        .attr('width', '700')
+        .attr('height', '480')
+        .attr("viewBox", `0 0 480 480`)
+        .call(d3.behavior.zoom().on("zoom", function() {
+            svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+        }))
         .attr("id", "grafo")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");

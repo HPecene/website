@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ExampleGrammars } from '../../assets/data/examples';
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 interface examples {
   id: string
   title: string,
@@ -15,7 +15,6 @@ interface examples {
   styleUrls: ['./landing.page.scss'],
 })
 export class LandingPage implements OnInit {
-  @ViewChild('iframe') iframe: ElementRef;
   examplesList: Array<examples>;
   current_index: string;
   current_index_number: number;
@@ -24,8 +23,8 @@ export class LandingPage implements OnInit {
   showAst: boolean;
   salida: string;
   segment: string;
-
-  constructor(exampleGrammars: ExampleGrammars) {
+  url:any;
+  constructor(exampleGrammars: ExampleGrammars, private domSanitizer: DomSanitizer) {
     this.current_index = "1";
     this.current_index_number = 1;
     this.examplesList = exampleGrammars.get();
@@ -37,21 +36,8 @@ export class LandingPage implements OnInit {
   }
 
   ngOnInit() {
+    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl('https://gist.github.com/PvasquezF/5572b07db089406607f2875d9b5f5955');
 
-  }
-
-
-  ionViewDidEnter() {
-    console.log('-------------')
-    const doc = this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentElement.contentWindow;
-    const content = `
-        <div>
-        <script type="text/javascript" src="https://gist.github.com/PvasquezF/5572b07db089406607f2875d9b5f5955"></script>
-        </div>
-    `;
-    doc.open();
-    doc.write(content);
-    doc.close();
   }
 
   changeSelect(event) {

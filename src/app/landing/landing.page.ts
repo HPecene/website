@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { ExampleGrammars } from '../../assets/data/examples';
 interface examples {
   id: string
   title: string,
@@ -22,11 +22,11 @@ export class LandingPage implements OnInit {
   showAst: boolean;
   salida: string;
   segment: string;
-  constructor() {
+
+  constructor(exampleGrammars: ExampleGrammars) {
     this.current_index = "1";
     this.current_index_number = 1;
-    this.examplesList = [];
-    this.createExamples();
+    this.examplesList = exampleGrammars.get();
     this.showInput = false;
     this.showOutput = true;
     this.showAst = true;
@@ -35,32 +35,6 @@ export class LandingPage implements OnInit {
   }
 
   ngOnInit() { }
-
-  createExamples() {
-    // Calculadora
-    this.examplesList.push({
-      id: "1",
-      title: 'Calculadora',
-      description: 'Esta gramatica reconoce expresiones aritmeticas y realiza las operaciones utilizando acciones gramaticales',
-      grammar: `\nINICIO\t\t:\t\tSUMA\tEOF\t\t{ print($1); }\n\t\t\t;\n\n
-SUMA\t\t:\t\tSUMA\t'+'\tMULT\t\t{ $$ = $1 + $3; }\n 
-\t\t\t|\t\tSUMA\t'-'\tMULT\t\t{ $$ = $1 - $3; }\n
-\t\t\t|\t\tMULT\t\t\t\t{ $$ = $1;}\n
-\t\t\t;\n\n
-     
-MULT\t\t:\t\tMULT\t'*'\tVALOR\t\t{ $$ = $1 * $3; }\n 
-\t\t\t|\t\tMULT\t'/'\tVALOR\t\t{ $$ = $1 / $3; }\n
-\t\t\t|\t\tVALOR\t\t\t\t{ $$ = $1;}\n
-\t\t\t;\n\n
-
-VALOR\t\t:\t\t'('\tSUMA\t')'\t\t{ $$ = Number($2); }\n
-\t\t\t|\t\tENTERO\t\t{ $$ = Number($1); }\n
-\t\t\t|\t\tDECIMAL\t\t{ $$ = Number($1); }\n
-\t\t\t;
-      
-`
-    });
-  }
 
   changeSelect(event) {
     this.current_index = event.detail.value;

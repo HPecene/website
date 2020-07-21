@@ -23,8 +23,8 @@ export class LandingPage implements OnInit {
   salida: string;
   segment: string;
   constructor(exampleGrammars: ExampleGrammars) {
-    this.current_index = "1";
-    this.current_index_number = 1;
+    this.current_index = "0";
+    this.current_index_number = 0;
     this.examplesList = exampleGrammars.get();
     this.showInput = false;
     this.showOutput = true;
@@ -48,8 +48,11 @@ export class LandingPage implements OnInit {
   }
 
   analizar(form: NgForm) {
+    console.log(this.current_index_number)
+    const name = this.examplesList[this.current_index_number]['function_name'];
+    console.log(name);
     // @ts-ignore
-    const result = ejemplo1.parse(form.value.entrada);
+    const result = window[name].parse(form.value.entrada);
     // @ts-ignore
     generateTree([result.node]);
     this.salida = result.val;

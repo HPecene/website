@@ -16,7 +16,7 @@
                         <ion-card-header>
                             <ion-card-title style="font-size: 20px;">
                                 <ion-item style="font-size: 18px;">
-                                    <ion-label>Ejemplo</ion-label>
+                                    <ion-label>Ejemplo {{current_index_number+1}}</ion-label>
                                     <ion-select [(ngModel)]="current_index" okText="Aceptar" cancelText="Cancelar" (ionChange)="changeSelect($event)">
                                         <ion-select-option *ngFor="let example of examplesList" value={{example.id}}>{{example.title}}</ion-select-option>
                                     </ion-select>

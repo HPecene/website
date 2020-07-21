@@ -1,12 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ExampleGrammars } from '../../assets/data/examples';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 interface examples {
   id: string
   title: string,
   description: string,
-  grammar: string
+  div_id: string
 }
 
 @Component({
@@ -23,8 +22,7 @@ export class LandingPage implements OnInit {
   showAst: boolean;
   salida: string;
   segment: string;
-  url:any;
-  constructor(exampleGrammars: ExampleGrammars, private domSanitizer: DomSanitizer) {
+  constructor(exampleGrammars: ExampleGrammars) {
     this.current_index = "1";
     this.current_index_number = 1;
     this.examplesList = exampleGrammars.get();
@@ -36,13 +34,14 @@ export class LandingPage implements OnInit {
   }
 
   ngOnInit() {
-    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl('https://gist.github.com/PvasquezF/5572b07db089406607f2875d9b5f5955');
-
+    // @ts-ignore
+    addChild(this.examplesList[0].div_id);
   }
-
   changeSelect(event) {
     this.current_index = event.detail.value;
     this.current_index_number = Number(this.current_index);
+    // @ts-ignore
+    addChild(this.examplesList[this.current_index_number].div_id);
   }
   segmentChanged(ev: any) {
     this.segment = ev.detail.value;

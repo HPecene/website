@@ -21,6 +21,13 @@ export class ExampleGrammars {
                 "description": "Esta gramatica reconoce expresiones aritmeticas y realiza las operaciones utilizando acciones gramaticales, contiene ambiguedad que es resuelta utilizando precendencia.",
                 "div_id": "global-gist-377c4c7adcbd0c8d2ab9d32caf0e5b7e",
                 "function_name":"ejemplo2"
+            },
+            {
+                "id": "2",
+                "title": "Calculadora con gramatica descendente",
+                "description": "Esta gramatica reconoce expresiones aritmeticas y genera su arbol, no opera la entrada!.",
+                "div_id": "global-gist-d760bca229ab5af33482bb1810e08c33",
+                "function_name":"ejemplo3"
             }
         ]
     }

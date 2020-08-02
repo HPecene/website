@@ -48,9 +48,7 @@ export class LandingPage implements OnInit {
   }
 
   analizar(form: NgForm) {
-    console.log(this.current_index_number)
     const name = this.examplesList[this.current_index_number]['function_name'];
-    console.log(name);
     // @ts-ignore
     const result = window[name].parse(form.value.entrada);
     // @ts-ignore

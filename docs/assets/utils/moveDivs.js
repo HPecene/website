@@ -3,6 +3,5 @@ function addChild(div_id) {
     while (node.hasChildNodes()) {
         node.removeChild(node.lastChild);
     }
-    console.log(div_id)
-    document.getElementById('gist-div').appendChild(document.getElementById(div_id))
+    document.getElementById('gist-div').appendChild(document.getElementById(div_id).cloneNode(true))
 }

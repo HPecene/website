@@ -71,48 +71,45 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var ejemplo3 = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,7],$V3=[5,17],$V4=[2,5],$V5=[1,10],$V6=[1,11],$V7=[5,8,9,17],$V8=[2,9],$V9=[1,13],$Va=[1,14],$Vb=[5,8,9,12,13,17];
+var ejemplo4 = (function(){
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,7],$V3=[1,9],$V4=[1,10],$V5=[5,6,8,13],$V6=[1,11],$V7=[1,12],$V8=[5,6,8,9,11,13];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"INICIO":3,"E":4,"EOF":5,"T":6,"E1":7,"+":8,"-":9,"F":10,"T1":11,"*":12,"/":13,"ENTERO":14,"DECIMAL":15,"(":16,")":17,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"+",9:"-",12:"*",13:"/",14:"ENTERO",15:"DECIMAL",16:"(",17:")"},
-productions_: [0,[3,2],[4,2],[7,3],[7,3],[7,0],[6,2],[11,3],[11,3],[11,0],[10,1],[10,1],[10,3]],
+symbols_: {"error":2,"INICIO":3,"SUMA":4,"EOF":5,"+":6,"MULT":7,"-":8,"*":9,"VALOR":10,"/":11,"(":12,")":13,"ENTERO":14,"DECIMAL":15,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"+",8:"-",9:"*",11:"/",12:"(",13:")",14:"ENTERO",15:"DECIMAL"},
+productions_: [0,[3,2],[4,3],[4,3],[4,1],[7,3],[7,3],[7,1],[10,3],[10,1],[10,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- this.$ = { val: $$[$0-1].val, node: newNode(yy, yystate, $$[$0-1].node, 'EOF')}; return this.$; 
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-1].val}\n=,${$$[$0-1].temp},,${temp}`, node: newNode(yy, yystate, $$[$0-1].node, $$[$0], 'EOF')}; return this.$; 
 break;
-case 2: case 6:
- s = eval('$$'); this.$ = { val: $$[$0].val, node: newNode(yy, yystate, $$[$0-1].node, $$[$0].node)}; 
+case 2:
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-2].val}\n${$$[$0].val}\n+,${$$[$0-2].temp},${$$[$0].temp},${temp}`, node: newNode(yy, yystate, $$[$0-2].node, $$[$0-1], $$[$0].node)}; 
 break;
 case 3:
- s = eval('$$'); this.$ = { val: s[s.length-4].val + $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-2].val}\n${$$[$0].val}\n-,${$$[$0-2].temp},${$$[$0].temp},${temp}`, node: newNode(yy, yystate, $$[$0-2].node, $$[$0-1], $$[$0].node)}; 
 break;
-case 4:
- s = eval('$$'); this.$ = { val: s[s.length-4].val - $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+case 4: case 7:
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0].val}\n=,${$$[$0].temp},,${temp}`,            node: newNode(yy, yystate, $$[$0].node)};              
 break;
-case 5: case 9:
- s = eval('$$'); this.$ = { val: s[s.length-1].val, node: newNode(yy, yystate, 'EPSILON')}; 
+case 5:
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-2].val}\n${$$[$0].val}\n*,${$$[$0-2].temp},${$$[$0].temp},${temp}`, node: newNode(yy, yystate, $$[$0-2].node, $$[$0-1], $$[$0].node)}; 
 break;
-case 7:
- s = eval('$$'); this.$ = { val: s[s.length-4].val * $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+case 6:
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-2].val}\n${$$[$0].val}\n/,${$$[$0-2].temp},${$$[$0].temp},${temp}`, node: newNode(yy, yystate, $$[$0-2].node, $$[$0-1], $$[$0].node)}; 
 break;
 case 8:
- s = eval('$$'); this.$ = { val: s[s.length-4].val / $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+ var temp = getTemp(); this.$ = { temp, val: `${$$[$0-1].val}\n=,${$$[$0-1].temp},,${temp}`,  node: newNode(yy, yystate, $$[$0-2], $$[$0-1], $$[$0])};                     
 break;
-case 10: case 11:
- s = eval('$$'); this.$ = { val: Number($$[$0]), node: newNode(yy, yystate, $$[$0])}; 
-break;
-case 12:
- s = eval('$$'); this.$ = { val: $$[$0-1].val, node: newNode(yy, yystate, $$[$0-1])}; 
+case 9: case 10:
+ var temp = getTemp(); this.$ = { temp, val: `=,${$$[$0]},,${temp}`,       node: newNode(yy, yystate, $$[$0])};                             
 break;
 }
 },
-table: [{3:1,4:2,6:3,10:4,14:$V0,15:$V1,16:$V2},{1:[3]},{5:[1,8]},o($V3,$V4,{7:9,8:$V5,9:$V6}),o($V7,$V8,{11:12,12:$V9,13:$Va}),o($Vb,[2,10]),o($Vb,[2,11]),{4:15,6:3,10:4,14:$V0,15:$V1,16:$V2},{1:[2,1]},o($V3,[2,2]),{6:16,10:4,14:$V0,15:$V1,16:$V2},{6:17,10:4,14:$V0,15:$V1,16:$V2},o($V7,[2,6]),{10:18,14:$V0,15:$V1,16:$V2},{10:19,14:$V0,15:$V1,16:$V2},{17:[1,20]},o($V3,$V4,{7:21,8:$V5,9:$V6}),o($V3,$V4,{7:22,8:$V5,9:$V6}),o($V7,$V8,{11:23,12:$V9,13:$Va}),o($V7,$V8,{11:24,12:$V9,13:$Va}),o($Vb,[2,12]),o($V3,[2,3]),o($V3,[2,4]),o($V7,[2,7]),o($V7,[2,8])],
+table: [{3:1,4:2,7:3,10:4,12:$V0,14:$V1,15:$V2},{1:[3]},{5:[1,8],6:$V3,8:$V4},o($V5,[2,4],{9:$V6,11:$V7}),o($V8,[2,7]),{4:13,7:3,10:4,12:$V0,14:$V1,15:$V2},o($V8,[2,9]),o($V8,[2,10]),{1:[2,1]},{7:14,10:4,12:$V0,14:$V1,15:$V2},{7:15,10:4,12:$V0,14:$V1,15:$V2},{10:16,12:$V0,14:$V1,15:$V2},{10:17,12:$V0,14:$V1,15:$V2},{6:$V3,8:$V4,13:[1,18]},o($V5,[2,2],{9:$V6,11:$V7}),o($V5,[2,3],{9:$V6,11:$V7}),o($V8,[2,5]),o($V8,[2,6]),o($V8,[2,8])],
 defaultActions: {8:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
@@ -260,7 +257,8 @@ parse: function parse(input) {
     }
     return true;
 }};
-let s = null;/* generated by jison-lex 0.3.4 */
+
+/* generated by jison-lex 0.3.4 */
 var lexer = (function(){
 var lexer = ({
 
@@ -594,19 +592,19 @@ case 1:return 15
 break;
 case 2:return 14
 break;
-case 3:return 12
+case 3:return 9
 break;
-case 4:return 13
+case 4:return 11
 break;
 case 5:return ';'
 break;
-case 6:return 9
+case 6:return 8
 break;
-case 7:return 8
+case 7:return 6
 break;
-case 8:return 16
+case 8:return 12
 break;
-case 9:return 17  
+case 9:return 13  
 break;
 case 10:return 5
 break;
@@ -627,9 +625,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = ejemplo3;
-exports.Parser = ejemplo3.Parser;
-exports.parse = function () { return ejemplo3.parse.apply(ejemplo3, arguments); };
+exports.parser = ejemplo4;
+exports.Parser = ejemplo4.Parser;
+exports.parse = function () { return ejemplo4.parse.apply(ejemplo4, arguments); };
 exports.main = function commonjsMain (args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

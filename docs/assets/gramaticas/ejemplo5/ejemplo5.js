@@ -71,49 +71,71 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var ejemplo3 = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,7],$V3=[5,17],$V4=[2,5],$V5=[1,10],$V6=[1,11],$V7=[5,8,9,17],$V8=[2,9],$V9=[1,13],$Va=[1,14],$Vb=[5,8,9,12,13,17];
+var ejemplo5 = (function(){
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,8],$V1=[1,9],$V2=[1,10],$V3=[1,11],$V4=[5,12];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"INICIO":3,"E":4,"EOF":5,"T":6,"E1":7,"+":8,"-":9,"F":10,"T1":11,"*":12,"/":13,"ENTERO":14,"DECIMAL":15,"(":16,")":17,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"+",9:"-",12:"*",13:"/",14:"ENTERO",15:"DECIMAL",16:"(",17:")"},
-productions_: [0,[3,2],[4,2],[7,3],[7,3],[7,0],[6,2],[11,3],[11,3],[11,0],[10,1],[10,1],[10,3]],
+symbols_: {"error":2,"S":3,"R":4,"EOF":5,"PI":6,"MOV":7,"(":8,"num":9,",":10,")":11,";":12,"D":13,"u":14,"d":15,"r":16,"l":17,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"(",9:"num",10:",",11:")",12:";",14:"u",15:"d",16:"r",17:"l"},
+productions_: [0,[3,2],[4,2],[6,5],[7,3],[7,1],[13,1],[13,1],[13,1],[13,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- this.$ = { val: $$[$0-1].val, node: newNode(yy, yystate, $$[$0-1].node, 'EOF')}; return this.$; 
+ this.$ = { val: $$[$0-1].log.join('\n'), node: newNode(yy, yystate, $$[$0-1].node, 'EOF') }; return this.$; 
 break;
-case 2: case 6:
- s = eval('$$'); this.$ = { val: $$[$0].val, node: newNode(yy, yystate, $$[$0-1].node, $$[$0].node)}; 
+case 2:
+ this.$ = { loc:{ x: $$[$0].loc.x, y: $$[$0].loc.y }, log: $$[$0].log, node: newNode(yy, yystate, $$[$0-1].node, $$[$0].node) } 
 break;
 case 3:
- s = eval('$$'); this.$ = { val: s[s.length-4].val + $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+ this.$ = { loc:{ x: Number($$[$0-3]), y: Number($$[$0-1]) }, log:[`${$$[$0-3]}, ${$$[$0-1]}`], node: newNode(yy, yystate, $$[$0-4], $$[$0-3], $$[$0-2], $$[$0-1], $$[$0]) } 
 break;
 case 4:
- s = eval('$$'); this.$ = { val: s[s.length-4].val - $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+ 
+                                   s = eval('$$'); 
+                                   this.$ = { 
+                                             loc: { 
+                                                       x: s[s.length-3].loc.x + $$[$0].loc.x, 
+                                                       y: s[s.length-3].loc.y + $$[$0].loc.y 
+                                                  }, 
+                                             log:[...s[s.length-3].log], 
+                                             node: newNode(yy, yystate, $$[$0-2].node, $$[$0-1], $$[$0].node) 
+                                        }
+                                   this.$.log.push(`${this.$.loc.x}, ${this.$.loc.y}`);
+                              
 break;
-case 5: case 9:
- s = eval('$$'); this.$ = { val: s[s.length-1].val, node: newNode(yy, yystate, 'EPSILON')}; 
+case 5:
+ 
+                                   s = eval('$$'); 
+                                   this.$ = { 
+                                             loc: { 
+                                                       x: s[s.length-2].loc.x + $$[$0].loc.x, 
+                                                       y: s[s.length-2].loc.y + $$[$0].loc.y 
+                                                  }, 
+                                             log:[...s[s.length-2].log], 
+                                             node: newNode(yy, yystate, $$[$0].node) 
+                                        } 
+                                   this.$.log.push(`${this.$.loc.x}, ${this.$.loc.y}`);
+                              
+break;
+case 6:
+  this.$ = { loc:{ x: +0, y: +1 }, node: newNode(yy, yystate, $$[$0]) } 
 break;
 case 7:
- s = eval('$$'); this.$ = { val: s[s.length-4].val * $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+  this.$ = { loc:{ x: +0, y: -1 }, node: newNode(yy, yystate, $$[$0]) } 
 break;
 case 8:
- s = eval('$$'); this.$ = { val: s[s.length-4].val / $$[$0].val, node: newNode(yy, yystate, $$[$0-2], $$[$0-1].node, $$[$0].node)}; 
+  this.$ = { loc:{ x: +1, y: +0 }, node: newNode(yy, yystate, $$[$0]) } 
 break;
-case 10: case 11:
- s = eval('$$'); this.$ = { val: Number($$[$0]), node: newNode(yy, yystate, $$[$0])}; 
-break;
-case 12:
- s = eval('$$'); this.$ = { val: $$[$0-1].val, node: newNode(yy, yystate, $$[$0-1])}; 
+case 9:
+  this.$ = { loc:{ x: -1, y: +0 }, node: newNode(yy, yystate, $$[$0]) } 
 break;
 }
 },
-table: [{3:1,4:2,6:3,10:4,14:$V0,15:$V1,16:$V2},{1:[3]},{5:[1,8]},o($V3,$V4,{7:9,8:$V5,9:$V6}),o($V7,$V8,{11:12,12:$V9,13:$Va}),o($Vb,[2,10]),o($Vb,[2,11]),{4:15,6:3,10:4,14:$V0,15:$V1,16:$V2},{1:[2,1]},o($V3,[2,2]),{6:16,10:4,14:$V0,15:$V1,16:$V2},{6:17,10:4,14:$V0,15:$V1,16:$V2},o($V7,[2,6]),{10:18,14:$V0,15:$V1,16:$V2},{10:19,14:$V0,15:$V1,16:$V2},{17:[1,20]},o($V3,$V4,{7:21,8:$V5,9:$V6}),o($V3,$V4,{7:22,8:$V5,9:$V6}),o($V7,$V8,{11:23,12:$V9,13:$Va}),o($V7,$V8,{11:24,12:$V9,13:$Va}),o($Vb,[2,12]),o($V3,[2,3]),o($V3,[2,4]),o($V7,[2,7]),o($V7,[2,8])],
-defaultActions: {8:[2,1]},
+table: [{3:1,4:2,6:3,8:[1,4]},{1:[3]},{5:[1,5]},{7:6,13:7,14:$V0,15:$V1,16:$V2,17:$V3},{9:[1,12]},{1:[2,1]},{5:[2,2],12:[1,13]},o($V4,[2,5]),o($V4,[2,6]),o($V4,[2,7]),o($V4,[2,8]),o($V4,[2,9]),{10:[1,14]},{13:15,14:$V0,15:$V1,16:$V2,17:$V3},{9:[1,16]},o($V4,[2,4]),{11:[1,17]},o([14,15,16,17],[2,3])],
+defaultActions: {5:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -590,29 +612,29 @@ var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:/* skip whitespace */
 break;
-case 1:return 15 
+case 1:return 9
 break;
-case 2:return 14
+case 2:return 8
 break;
-case 3:return 12
+case 3:return 11
 break;
-case 4:return 13
+case 4:return 12
 break;
-case 5:return ';'
+case 5:return 10
 break;
-case 6:return 9
+case 6:return 14
 break;
-case 7:return 8
+case 7:return 15
 break;
-case 8:return 16
+case 8:return 17
 break;
-case 9:return 17  
+case 9:return 16
 break;
 case 10:return 5
 break;
 }
 },
-rules: [/^(?:\s+)/i,/^(?:(([0-9]+)\.([0-9]+)))/i,/^(?:([0-9]+))/i,/^(?:\*)/i,/^(?:\/)/i,/^(?:;)/i,/^(?:-)/i,/^(?:\+)/i,/^(?:\()/i,/^(?:\))/i,/^(?:$)/i],
+rules: [/^(?:\s+)/i,/^(?:((-)?([0-9]+)(\.([0-9]+))?))/i,/^(?:\()/i,/^(?:\))/i,/^(?:;)/i,/^(?:,)/i,/^(?:u\b)/i,/^(?:d\b)/i,/^(?:l\b)/i,/^(?:r\b)/i,/^(?:$)/i],
 conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10],"inclusive":true}}
 });
 return lexer;
@@ -627,9 +649,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = ejemplo3;
-exports.Parser = ejemplo3.Parser;
-exports.parse = function () { return ejemplo3.parse.apply(ejemplo3, arguments); };
+exports.parser = ejemplo5;
+exports.Parser = ejemplo5.Parser;
+exports.parse = function () { return ejemplo5.parse.apply(ejemplo5, arguments); };
 exports.main = function commonjsMain (args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

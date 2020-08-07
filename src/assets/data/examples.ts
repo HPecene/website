@@ -35,6 +35,13 @@ export class ExampleGrammars {
                 "description": "Esta gramatica traduce expresiones aritmeticas a codigo intermedio con notación de cuadruplos.",
                 "div_id": "global-gist-1c8023941716d379c3e4db5d6bdb41b7",
                 "function_name":"ejemplo4"
+            },
+            {
+                "id": "4",
+                "title": "Atributos heredados en JISON",
+                "description": "Se presenta el paso de atributos heredados utilizando la pila de jison.",
+                "div_id": "global-gist-b9a7bfffcb0a852eae352c1b2698296c",
+                "function_name":"ejemplo5"
             }
         ]
     }

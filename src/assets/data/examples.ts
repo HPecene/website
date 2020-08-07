@@ -28,6 +28,13 @@ export class ExampleGrammars {
                 "description": "Esta gramatica reconoce expresiones aritmeticas y genera su arbol, no opera la entrada!.",
                 "div_id": "global-gist-d760bca229ab5af33482bb1810e08c33",
                 "function_name":"ejemplo3"
+            },
+            {
+                "id": "3",
+                "title": "Expresiones aritmeticas a cuadruplos",
+                "description": "Esta gramatica traduce expresiones aritmeticas a codigo intermedio con notación de cuadruplos.",
+                "div_id": "global-gist-1c8023941716d379c3e4db5d6bdb41b7",
+                "function_name":"ejemplo4"
             }
         ]
     }

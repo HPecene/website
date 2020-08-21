@@ -42,6 +42,13 @@ export class ExampleGrammars {
                 "description": "Se presenta el paso de atributos heredados utilizando la pila de jison.",
                 "div_id": "global-gist-b9a7bfffcb0a852eae352c1b2698296c",
                 "function_name":"ejemplo5"
+            },
+            {
+                "id": "5",
+                "title": "If colgante",
+                "description": "Se presenta debido a ambigueda por la forma de la gramatica.",
+                "div_id": "global-gist-28dcbdb2b5a5f0e06de9da3712fc7eba",
+                "function_name":"ejemplo6"
             }
         ]
     }

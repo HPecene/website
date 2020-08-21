@@ -55,6 +55,6 @@ export class LandingPage implements OnInit {
     generateTree([result.node]);
     this.salida = result.val;
     this.segment = 'salida';
-  }
+  } 
 
 }
